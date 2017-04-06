@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/jquery-1.11.2.min.js"></script>
+    <script>
+        function onWriteSubmit() {
+            if ($('#creator_id').val().trim() == "") {
+                var message = '아이디를 입력해주세요';
+                $('#creator_id').val('');
+                $('#creator_id').focus();
+                return false;
+            }
+            if ($('#title').val().trim() == "") {
+                var message = '제목을 입력해 주세요';
+                $('#title').val('');
+                $('#title').focus();
+                return false;
+            }
+            if ($('#content').val().trim() == "") {
+                var message = '내용을 입력해 주세요';
+                $('#content').val('');
+                $('#content').focus();
+                return false;
+            }
+            if( $('#passwd').val().trim() == ""){
+              var message = '패스워드를 입력해주세요';
+              $('#passwd').val('');
+              $('#passwd').focus();
+              return false;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1><%= title %></h1>
+
+    <form action='/board/update' method='post' onsubmit="onWriteSubmit()">
+        <table border='1'>
+            <input type='hidden' name='idx' value='<%= row.idx %>' />
+            <tr>
+                <td>작성자</td>
+                <td><input type='text' name='creator_id' id='creator_id' value='<%= row.creator_id %>' required/></td>
+            </tr>
+            <tr>
+                <td>제목</td>
+                <td><input type='text' name='title' id='title' value='<%= row.title %>' required/></td>
+            </tr>
+            <tr>
+                <td>내용</td>
+                <td><input type='text' name='content' id='content' value='<%= row.content %>' required/></td>
+            </tr>
+            <tr>
+                <td>변경일</td>
+                <td><input type='text' name='modidage' id='modidage' value='<%= row.modidage %>' required/></td>
+            </tr>
+            <tr>
+                <td>조회수</td>
+                <td><input type='text' name='hit' id='hit' value='<%= row.hit %>' required/></td>
+            </tr>
+            <tr>
+                <td>비밀번호</td>
+                <td><input type='password' name='passwd' id='passwd' required/></td>
+            </tr>
+            <tr>
+                <td colspan='2'>
+                    <button type='submit'>수정 완료</button>
+                    <a href='/board'>돌아가기</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>

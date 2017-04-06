@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    meta(charset='utf8')
+    style
+      *{text-decoration:none}
+  body
+    h1
+      if sel=='undefined'
+        a(href='/topic?page='+currentPage) HOMEPAGE☆
+      else
+        a(href='/topic?page='+ currentPage+'&sel='+sel+'&find='+find) HOMEPAGE☆
+
+    artcle
+      if topic
+        h2= topic.title
+        p
+        h4= topic.description
+        p
+        div= '작성자 : '+topic.author
+        =topic.view_cnt+' views'
+        div #{moment(topic.regdate).format("YY/MM/DD HH:mm")}
+      else
+        topic값이 없음~_~
+    ul
+    p
+      button
+        a(href='/topic/add?page='+currentPage+'&sel='+sel+'&find='+find) 글쓰기
+      if topic
+        button
+          a(href='/topic/'+topic.id+'/edit?page='+currentPage+'&sel='+sel+'&find='+find) 수정하기
+        button
+          a(href='/topic/'+topic.id+'/delete?page='+currentPage+'&sel='+sel+'&find='+find) 삭제하기

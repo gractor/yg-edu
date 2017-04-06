@@ -1,0 +1,89 @@
+/*
+  Base Style
+*/
+a{
+  text-decoration:none;
+  color:inherit;
+}
+a:hover{
+  text-decoration:underline;
+}
+ul{
+  list-style-type: none;
+  padding:0;
+}
+header h1{
+  color:tomato;
+  text-align:center;
+}
+footer{
+  text-align:center;
+  padding: 20px 0;
+}
+
+/*
+  Posts Style
+*/
+
+.board_title{
+  max-width: 500px;
+  margin: 0 auto;
+}
+.board_title h3{
+  background-color: #75CEF7;
+  padding: 5px 0;
+  padding-left: 2px;
+}
+.board_title h2{
+  text-align:center;
+}
+.board_title .main ul li{
+  padding: 4px;
+}
+.board_title .main ul li>span{
+  width: 100px;
+  float:right;
+}
+.board_title .main ul li:nth-child(odd){
+  background-color: #75CEF7;
+}
+.board_title .main ul li:nth-child(even){
+  background-color: #A8D8EF;
+}
+.board_title .show .body{
+  min-height:70px;
+  white-space: pre-wrap;
+}
+.board_title .show .time{
+  float:right;
+  margin:2px;
+  padding: 5px 10px;
+  background-color: #E4E4E4;
+  border: 0 solid black;
+  border-radius: 5px;
+}
+.board_title .show .btn_delete{
+  display:inline-block;
+}
+.board_title .show .tools{
+  margin-bottom:20px;
+}
+.board_title form{
+  display:block;
+  width: 400px;
+  margin: 0 auto;
+  margin-bottom:20px;
+}
+.board_title form label{
+  display:block;
+  margin:5px 0;
+}
+.board_title form input[type="text"]{
+  width:400px;
+}
+.board_title form textarea{
+  display:block;
+  margin-bottom:10px;
+  width:400px;
+  height: 100px;
+}

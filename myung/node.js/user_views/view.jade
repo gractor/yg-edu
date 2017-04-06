@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+  body
+    h1 상품 > 조회
+      h1 title:
+        h2=good.title
+      h1 description:
+        h2 =good.description
+    a(href='/o2'+good.id+'/edit') 상품수정
+    form(action='/goods/'+good.id+'/delete' method='postt')
+      p
+        input(type='submit' value='상품삭제')

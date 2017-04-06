@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    script(src="http://code.jquery.com/jquery-3.2.0.js"
+    integrity="sha256-wPFJNIFlVY49B+CuAIrDr932XSb6Jk3J1M22M3E2ylQ="
+    crossorigin="anonymous")
+    script
+     include ../BoardJS/list.js
+  body
+    h1
+      a(href="/board") Board of NodeJS
+    br
+    table
+      tr
+        th NO
+        th TITLE
+        th WRITER
+        th DATE
+        th VIEW_CNT
+      each boarding in boardings
+        tr
+          td= boarding.id
+          td
+            a(href="/board/"+boarding.id)= boarding.title
+          td= boarding.writer
+          td= boarding.date
+          td= boarding.view_cnt
+     button#Write 글쓰기

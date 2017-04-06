@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+  body
+    h1
+      a(href='/board') Server Side Javascript
+    ul
+      each board in boards
+        li
+          a(href='/board/'+board.id)= board.title
+    article
+     h1= 'Delete? ' +board.title
+     form(action='/board/'+board.id+'/delete' method='post')
+      p
+        input(type='submit' value='YES')
+     a(href='/board/'+board.id) NO

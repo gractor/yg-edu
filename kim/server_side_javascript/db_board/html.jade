@@ -1,0 +1,36 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    script(src="http://code.jquery.com/jquery-3.2.0.js"
+    integrity="sha256-wPFJNIFlVY49B+CuAIrDr932XSb6Jk3J1M22M3E2ylQ="
+    crossorigin="anonymous")
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
+    script.
+      $(document).ready(function(){
+        $('#btn_add').on('click', function(){
+          self.location = '/add';
+        });
+      });
+  body
+    h1
+      a(href='/') This is Board of NodeJS..
+      br
+      br
+      #board_view
+      .list
+        table.table
+          tr
+            th NO
+            th TITLE
+            th WRITER
+            th DATE
+          each board in boards
+              tr
+                td= board.id
+                td
+                  a(href='/'+board.id)= board.title
+                td= board.writer
+                td= board.date
+      button#btn_add 글쓰기

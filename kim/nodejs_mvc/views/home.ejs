@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ./home/head %>
+  </head>
+  <body>
+    <header>
+      <% include ./home/header %>
+    </header>
+    <div class="board_title">
+      <% include ./part/top %>
+
+<!-- main -->
+    <!-- views/home.ejs -->
+    <div class="main">
+      <ul>
+          <li class="header"> No <span>hit</span><span>Date</span><span>Writer</span><span>Title</span></li>
+        <% result.forEach(function(data){ %>
+          <li>
+            <%= data.idx %>
+            <span><%= data.hit %></span>
+            <span><%= data.regdate.toLocaleDateString(); %></span>
+            <span><%= data.creator_id %></span>
+            <span><a href="/home/<%= data.idx %>"><%= data.title %></a></span>
+          </li>
+          <li></li>
+        <% }) %>
+      </ul>
+      <a href="/home/create"><button>Write</button></a>
+    </div>
+<!-- /main-->
+    </div>
+    <footer>
+      <% include ./home/footer.ejs %>
+    </footer>
+  </body>
+</html>

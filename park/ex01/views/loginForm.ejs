@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/javascripts/jquery-1.11.2.min.js"></script>
+    <script>
+      function loginCheck(){
+        if ($('#id').val().trim() == "") {
+            var message = '아이디를 입력해주세요';
+            $('#id').val('');
+            $('#id').focus();
+            return false;
+        }
+        if ($('#passwd').val().trim() == "") {
+            var message = '비밀번호를 입력해 주세요';
+            $('#passwd').val('');
+            $('#passwd').focus();
+            return false;
+        }
+      }
+    </script>
+</head>
+
+<body>
+    <h1><%= title %></h1>
+    <form class="form-inline" method="post" action '/loginForm' onsubmit="return loginCheck()">
+      <div class="form-group">
+          <label class="sr-only" for="exampleInputEmail3">ID</label>
+          <input type="text" class="form-control" id="id" name="id" placeholder="id">
+      </div>
+      <div class="form-group">
+          <label class="sr-only" for="exampleInputPassword3">PW</label>
+          <input type="password" class="form-control" id="passwd" name="passwd" placeholder="Password">
+      </div>
+      <br><br>
+      <button type="submit" class="btn btn-default">Login</button>
+    </form>
+    <br>
+    <form class="form-inline" action = '/joinForm' method="get">
+      <button type="submit" class="btn btn-default">Join</button>
+    </form>
+</body>
+
+</html>

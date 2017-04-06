@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset = 'utf-8'/>
+   <title></title>
+   <style>
+   .item > div{
+     display: inline-block; text-align:center; width:25%
+   }
+   </style>
+   <script src ="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+   <script>
+      $(document).ready(function(){
+         $('.btnAdd').click(function(){
+            var tName = $('.txtName').val();
+            var tAge = $('.txtAge').val();
+            var tPos = $('.txtPos').val();
+            var tDep = $('.txtDep').val();
+
+            if(!tName){
+               window.alert('이름을 입력하세요!');
+               return false;
+            }
+            else if(!tPos){
+               window.alert('직급을 입력하세요!');
+               return false;
+            }
+            else if(!tDep){
+               window.alert('부서를 입력하세요!');
+               return false;
+            }
+
+            var cnt = parseInt(localStorage['cnt']);
+            localStorage[cnt + '_name'] = tName;
+            localStorage[cnt + '_age'] = tAge;
+            localStorage[cnt + '_pos'] = tPos;
+            localStorage[cnt + '_dep'] = tDep;
+
+            localStorage['cnt'] = cnt + 1;
+
+            Refresh();
+
+            $('.txtName').val('');
+            $('.txtAge').val('');
+            $('.txtPos').val('');
+            $('.txtDep').val('');
+         });
+
+         function Refresh(){
+            $('.output').empty();
+
+            var cnt = parseInt(localStorage['cnt']);
+            for(var i = 0; i < cnt; i++){
+               var tName = localStorage[i + '_name'];
+               var tAge = localStorage[i + '_age'];
+               var tPos = localStorage[i + '_pos'];
+               var tDep = localStorage[i + '_dep'];
+
+               var item = $('<div></div>').addClass('item');
+               //<div class="item"></div>
+               $('<div></div>').text(tName).appendTo(item);
+               //<div class="item"><div>김</div></div>
+               $('<div></div>').text(tAge).appendTo(item);
+               $('<div></div>').text(tPos).appendTo(item);
+               $('<div></div>').text(tDep).appendTo(item);
+
+               item.appendTo($('.output'));
+            }
+            $('.personCnt').text('현재 등록된 직원 수 : ' + i + '명');
+         };
+         Refresh();
+      });
+
+   </script>
+   <style>
+      *{margin:0; padding:0; font-family: 'Malgun Gothic',
+      sans-serif;}
+      .program{
+         margin-top: 10px; margin-left: 10px; padding:8px;
+         width: 800px; height: 400px; border: 1px solid #000;}
+      .output{
+         width:790px; height:200px; border:1px solid #000;
+         padding:4px; overflow: scroll;
+      }
+      .item > div{
+         display: inline-block; text-align: center; width:25%;
+      }
+   </style>
+</head>
+<body>
+   <div class = "program">
+      <h3>인적관리 프로그램</h3>
+      <p>직원 정보를 입력하고 버튼을 누르십시오.</p>
+      <br/><hr/><br/>
+      <input type="text" class="txtName" placeholder="이름"/>
+      <input type="text" class="txtAge" placeholder="나이"/>
+      <input type="text" class="txtPos" placeholder="직급"/>
+      <input type="text" class="txtDep" placeholder="부서"/>
+      <input type="button" class="btnAdd" value="등록하기"/>
+      <br/><br/><hr/><br/>
+      <p class="personCnt">현재 등록된 직원 수 : 0명</p>
+      <div class="output"></div>
+   </div>
+</body>
+</html>

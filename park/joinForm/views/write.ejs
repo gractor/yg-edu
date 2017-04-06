@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/jquery-1.11.2.min.js"></script>
+  <script>
+    function onWriteSubmit(){
+      if( $('#creator_id').val().trim() == ""){
+        var message = '아이디를 입력해주세요';
+        $('#creator_id').val('');
+        $('#creator_id').focus();
+        return false;
+      }
+      if( $('#title').val().trim() == ""){
+        var message = '제목을 입력해 주세요';
+        $('#title').val('');
+        $('#title').focus();
+        return false;
+      }
+      if( $('#content').val().trim() == ""){
+        var message = '내용을 입력해 주세요';
+        $('#content').val('');
+        $('#content').focus();
+        return false;
+      }
+      if( $('#passwd').val().trim() == ""){
+        var message = '패스워드를 입력해주세요';
+        $('#passwd').val('');
+        $('#passwd').focus();
+        return false;
+      }
+    }
+  </script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+
+    <form action = '/board/write' method = 'post' onsubmit="return onWriteSubmit()">
+      <table border="1">
+        <tr>
+          <td>작성자</td>
+          <td><input type = 'text' name = 'creator_id' id = 'creator_id'/></td>
+        </tr>
+        <tr>
+          <td>제목</td>
+          <td><input type = 'text' name = 'title' id = 'title'/></td>
+        </tr>
+        <tr>
+          <td>내용</td>
+          <td><textarea name = 'content' id = 'content' cols='30' rows = '10'></textarea></td>
+        </tr>
+        <tr>
+          <td>암호</td>
+          <td><input type = 'password' name = 'passwd' id = 'passwd'/></td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <button type="submit">글쓰기</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>

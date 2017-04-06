@@ -1,0 +1,39 @@
+doctype html
+html
+  head
+    meta(charset='utf8')
+    style
+      *{text-decoration:none}
+  body
+    h1
+      if sel=='undefined'
+        a(href='/topic?page='+currentPage) HOMEPAGE☆
+      else
+        a(href='/topic?page='+ currentPage+'&sel='+sel+'&find='+find) HOMEPAGE☆
+    artcle
+      if sel=='undefined'
+        form(action='edit?page='+currentPage method='post')
+          p
+            input(type='text' name='title' value=topic.title placeholder='title' size='98')
+          p
+            textarea(name='description' placeholder='description' rows='20' cols='100')=topic.description
+          p
+            input(type='text' name='author' value=topic.author placeholder='author' size='30')
+          p
+            input(type='submit' value='수정하기')
+            if topic
+              button
+                a(href='/topic/'+topic.id+'/delete?page='+currentPage) 삭제하기
+      else
+        form(action='edit?page=1' method='post')
+          p
+            input(type='text' name='title' value=topic.title placeholder='title' size='98')
+          p
+            textarea(name='description' placeholder='description' rows='20' cols='100')=topic.description
+          p
+            input(type='text' name='author' value=topic.author placeholder='author' size='30')
+          p
+            input(type='submit' value='수정하기')
+            if topic
+              button
+                a(href='/topic/'+topic.id+'/delete?page='+currentPage+'&sel='+sel+'&find='+find) 삭제하기

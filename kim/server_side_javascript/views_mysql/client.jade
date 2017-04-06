@@ -1,0 +1,27 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+  body
+    h1
+      a(href='/board') Board!!!
+    ul
+      each board in boards
+        li
+          a(href='/board/'+board.id)= board.title
+    article
+      if board
+        h2= board.title
+        = board.description
+        div= 'by '+ board.author
+      else
+       h2 WELCOME
+       | This is server side Javascript tutorial.
+     ul
+      li
+        a(href='/board/add') add
+      if board
+       li
+        a(href='/board/'+board.id+'/edit') edit
+       li
+        a(href='/board/'+board.id+'/delete') delete

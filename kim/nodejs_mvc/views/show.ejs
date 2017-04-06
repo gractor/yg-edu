@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ./home/head %>
+  </head>
+  <body>
+    <header>
+      <% include ./home/header %>
+    </header>
+    <div class="board_title">
+      <% include ./part/top %>
+
+      <!-- main -->
+          <!-- views/show.ejs -->
+      <div class="show">
+        <h3><%= result.title %></h3>
+        <div class="time_r"> RegDate <br>
+          <%= result.regdate.toLocaleDateString()%> <br>
+          <%= result.regdate.toLocaleTimeString()%>
+        </div>
+        <% if(result.modidate) { %>
+          <div class="time_m"> Update <br>
+            <%= result.modidate.toLocaleDateString()%> <br>
+            <%= result.modidate.toLocaleTimeString()%>
+          </div>
+        <% } %>
+        <label for="writer"><h4>Content</h4></label>
+        <p class="content"><%= result.content %></p>
+        <label for="writer"><h4>Writer</h4></label>
+        <p class="creator_id"><%= result.creator_id %></p>
+        <div class="edit">
+          <a href="/home/<%=result.idx%>/edit"><button>Edit</button></a>
+          <!-- Delete Button -->
+          <form class="delete" action="/home/<%=result.idx%>?_method=delete" method="post">
+            <button type="submit">Delete</button>
+          </form>
+        </div>
+        <a href="/home"><button>Back</button></a>
+      </div>
+
+
+
+     <!-- /main-->
+     <footer>
+       <% include ./home/footer.ejs %>
+     </footer>
+   </body>
+ </html>

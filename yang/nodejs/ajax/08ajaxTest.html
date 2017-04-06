@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset='utf-8'/>
+      <meta name="viewport" content="width=device-width",initial-scale="">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Document</title>
+      <script  src="http://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous"></script>
+    <script>
+    $(document).ready(function(){
+      $('#ButtonRequest').click(function(){
+        $.ajax({
+          url: 'https://xmaskjr_phptest.goorm.io/php_ex1/ajaxTest.php',
+          data: {myData: "안녕여러분, 하이브리드 힘내요"},
+          dataType: 'jsonp',
+          success: function(result){
+            $('.Response').text('서버응답결과: '+result.result);
+          },
+          error:function(){
+            $('.Response').text('에러발생');
+          }
+        });
+      });
+    });
+    </script>
+  </head>
+  <body>
+    <div class="Response"></div>
+    <input type="button" id="ButtonRequest" value="AJAX시작"></input>
+  </body>
+</html>

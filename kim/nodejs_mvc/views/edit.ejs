@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ./home/head %>
+  </head>
+  <body>
+    <header>
+      <% include ./home/header %>
+    </header>
+    <div class="board_title">
+      <% include ./part/top %>
+
+      <!-- main -->
+          <!-- views/new.ejs -->
+      <div class="edit">
+        <h3>Edit Content</h3>
+        <form class="form" action="/home/<%=result.idx%>?_method=put" method="post">
+          <label for="">Title</label>
+          <input type="text" name="result[title]" value="<%=result.title%>">
+          <label for="">Content</label>
+          <textarea name="result[content]" rows="8" cols="80"><%=result.content%></textarea>
+          <label for="">Writer</label>
+          <input type="text" name="result[creator_id]" value="<%=result.creator_id%>">
+          <button type="submit">Submit</button>
+        </form>
+        <a href="/home/<%=result.idx%>"><button>Back</button></a>
+      </div>
+
+
+
+     <!-- /main-->
+     <footer>
+       <% include ./home/footer.ejs %>
+     </footer>
+   </body>
+ </html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+      <meta charset='utf-8'>
+      <meta name="viewport" content="width=device-width",initial-scale="">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Document</title>
+      <script  src="http://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous"></script>
+    <script>
+      $(document).ready(function(){
+        $('#btnReq').click(function(){
+          var output = $('.output').empty();
+          $.ajax({
+            url: 'https://xmaskjr_phptest.goorm.io/php_ex1/ajax_db.php',
+            data: { },
+            dataType: 'jsonp',
+            success: function(data){
+              for(var i in data){
+                $('<p>이름 : '+data[i].pname+'</p>').appendTo(output);
+                $('<p>나이 : '+data[i].age+'</p>').appendTo(output);
+              }
+            },
+            eroor: function(){
+              $('.output').text('에러');
+            }
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <input type="button" id="btnReq" value="db연결">
+    <div class="output"></div>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    style
+      *(text-decoration:none)
+  body
+    h1
+      a(href='/topic') 게시판
+    table(border = "1" cellspacing="0")
+      tr
+        th 번호
+        th 제목
+        th 작성자
+        th 작성날짜
+        th(text-align="center") 조회수
+      each topic in topics
+        tr
+          td= topic.id
+          td
+            a(href='/topic/'+topic.id)= topic.title
+          td= topic.author
+          td= topic.reg_date
+          td= topic.VIEW_CNT
+    ul
+        button
+          a(href='/topic/add') 글쓰기
+      if topic
+        li
+          a(href='/topic/'+topic.id+'/edit') 수정
+        li
+          a(href='/topic/'+topic.id+'/delete') 삭제

@@ -1,0 +1,23 @@
+doctype
+html
+  head
+    meta(charset='utf-8')
+  body
+    h1
+      a(href='/topic') 게시판
+artcle
+  if topic
+    h2= topic.title
+    = topic.description
+    div='by '+topic.author
+  else
+    h2 welcome
+    | This is server side javascript tutorial.
+  p
+    button
+      a(href='/topic/add') 글쓰기
+    if topic
+      button
+        a(href='/topic/'+topic.id+'/edit') 수정
+      button
+        a(href='/topic/'+topic.id+'/delete') 삭제

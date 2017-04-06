@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/jquery-1.11.2.min.js"></script>
+    <script>
+      $(function(){
+        $('#btnJoin').click(function(){
+          if($('#id').val() == ""){
+            alert("아이디를 꼭 입력하세요");
+            $('#id').focus();
+            return ;
+          }
+          if($('#passwd').val() == ""){
+            alert("비밀번호를 꼭 입력하세요");
+            $('#passwd').focus();
+            return ;
+          }
+          if($('#name').val() == ""){
+            alert("이름을 꼭 입력하세요");
+            $('#name').focus();
+            return ;
+          }
+          $('#joinForm').submit();
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <form id = "joinForm" action = "/join" method="post">
+      <table width="400" border="1">
+        <tr>
+          <td>아이디</td>
+          <td><input type="text" name = "id" id = "id" size = "12" maxLengtn = "12"></td>
+        </tr>
+        <tr>
+          <td>비밀번호</td>
+          <td><input type="password" name = "passwd" id = "passwd" size = "12" maxLengtn = "12"></td>
+        </tr>
+        <tr>
+          <td>아이디</td>
+          <td><input type="text" name = "name" id = "name" size = "10" maxLengtn = "10"></td>
+        </tr>
+        <tr>
+          <td colspan="2">
+              <input type = "button" id = "btnJoin" name = "join" value = "가입"/>
+              <input type = "reset" id = "cancel" value = "취소"/>
+      </table>
+    </form>
+  </body>
+</html>

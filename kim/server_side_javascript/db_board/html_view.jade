@@ -1,0 +1,53 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    script(src="http://code.jquery.com/jquery-3.2.0.js"
+    integrity="sha256-wPFJNIFlVY49B+CuAIrDr932XSb6Jk3J1M22M3E2ylQ="
+    crossorigin="anonymous")
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
+    script.
+      $(document).ready(function(){
+        var f_obj = $('form[role="view"]');
+
+        var id = $('input').val();
+        var title = $('#title').val();
+        var text = $('#text').val();
+        var writer = $('#writer').val();
+
+        $('#ListAll').on('click',function(){
+          self.location = "/";
+        });
+
+        $('#Remove').on('click',function(){
+          f_obj.attr("action", "/"+ $('input').val()+"/delete");
+          f_obj.attr("method","post");
+          f_obj.submit();
+        });
+
+        $('#Modify').on('click', function(){
+          f_obj.attr("action", "/"+ $('input').val()+"/edit");
+          f_obj.attr("method","get");
+          f_obj.submit();
+        });
+      });
+  body
+    form(role='view' method='post')
+      input(type='hidden' name='id' value=result.id)
+      p
+        label TITLE
+      p
+        input(type='text' name='title' placeholder='title' value=result.title)
+      p
+        label TEXT
+      p
+        textarea(name='text' rows='3' placeholder='text')=result.text
+      p
+        label WRITER
+      p
+        input(type='text' name='writer' placeholder='writer' value=result.writer)
+    #btn_func
+      button#Modify 수정
+      button#Remove 삭제
+      button#ListAll 목록

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="/javascripts/jquery-1.11.2.min.js"></script>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+  </head>
+<body>
+  <h1><%= title %></h1>
+    <table border="1">
+      <tr>
+            <td>작성자</td>
+            <td><%=row.creator_id%></td>
+        </tr>
+        <tr>
+            <td>제목</td>
+            <td><%=row.title%></td>
+        </tr>
+        <tr>
+            <td>내용</td>
+            <td><%=row.content%></td>
+        </tr>
+        <tr>
+            <td>변경일</td>
+            <td><%=row.modidate%></td>
+        </tr>
+        <tr>
+            <td>조회수</td>
+            <td><%=row.hit%></td>
+          </tr>
+  </table>
+  <table>
+    <tr>
+        <form action="/board/update" method="get">
+          <input type="hidden" name="idx" value="<%=row.idx%>"/>
+          <button type="submit">수정</button>
+        </form>
+        <form action="/board" method="get">
+          <button type="submit">돌아가기</button>
+        </form>
+        <form action="/board/delete" method="post">
+          <input type="hidden" name="idx" value="<%=row.idx%>"/>
+          <button type="submit">삭제하기</button>
+        </form>
+    </tr>
+  </table>
+    <a href="#" onclick="javascript:window.open('http://twitter.com/intent/tweet?text='
+      +encodeURIComponent(document.URL), 'twittersharedialog',
+      'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank"
+      alt="Share on Twitter" >트위터공유</a>
+      <a href="#" onclick="javascript:window.open('http://share.naver.com/web/shareView.nhn?url='
+    +encodeURIComponent(document.URL)+'&title='+encodeURIComponent(document.title),
+     'naversharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+    target="_blank" alt="Share on Naver" >네이버공유</a>
+</body>
+</html>

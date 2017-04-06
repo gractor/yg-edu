@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    script(src="http://code.jquery.com/jquery-3.2.0.js"
+    integrity="sha256-wPFJNIFlVY49B+CuAIrDr932XSb6Jk3J1M22M3E2ylQ="
+    crossorigin="anonymous")
+    script
+     include ../BoardJS/view_write.js
+  body
+    h1
+      a(href="/board") Board of NodeJS
+    br
+    form(role="E_R_L")
+      p
+        input(type='hidden' id='id' value="")
+      p TITLE
+      p
+        input(type='text' id='title' placeholder='title' value="")
+      p TEXT
+      p
+        textarea(id='text' rows='3' placeholder='text')
+      p WRITER
+      p
+        input(type='text' id='writer' placeholder='writer' value="")
+    button#Submit 확인

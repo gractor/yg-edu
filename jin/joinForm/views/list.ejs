@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+<h1><%= title %></h1>
+
+<a href="/board/write">글쓰기로 이동</a>
+<br>
+<br>
+
+<table border="1">
+    <tr>
+        <td>번호</td>
+        <td>작성자</td>
+        <td>제목</td>
+        <td>조회수</td>
+        <td>변경일</td>
+    </tr>
+<%
+  for(var i=leng-((page*displayPageNum)-displayPageNum) ; i>leng-(page*displayPageNum); i--){
+    if(i<0){
+      break;
+    }else{
+      var item = rows[i];
+%>
+
+    <tr>
+        <td><%=i+1%></td>
+        <td><%=item.creator_id%></td>
+        <td><a href="/board/read/<%=item.idx%>"><%=item.title%></a></td>
+        <td><%=item.hit%></td>
+        <td><%=item.modidate%></td>
+    </tr>
+<%
+     }
+   }
+%>
+
+
+  <tr>
+    <td colspan="5">
+
+      <%
+        if(prev==true){
+      %>
+        <a href="/board/list/<%=startPage-1%>">&laquo;</a>
+      <%
+        }
+      %>
+      <%
+        for(var j = startPage; j <= endPage; j++){
+      %>
+         [ <a href="/board/list/<%= j %>"><%= j %></a> ]
+      <%
+        }
+      %>
+      <%
+        if(next==true){
+      %>
+        <a href="/board/list/<%=endPage+1%>">&raquo;</a>
+      <%
+        }
+      %>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

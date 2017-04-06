@@ -1,0 +1,48 @@
+doctype html
+html
+  head
+    meta(charset=utf-8)
+    script(src="http://code.jquery.com/jquery-3.2.0.js"
+    integrity="sha256-wPFJNIFlVY49B+CuAIrDr932XSb6Jk3J1M22M3E2ylQ="
+    crossorigin="anonymous")
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
+    script.
+      $(document).ready(function(){
+        var f_obj = $('form[role="form"]');
+        $('#Submit').on('click',function(){
+          var id = $('#id').val();
+          var title = $('#title').val();
+          var text = $('#text').val();
+          var writer = $('#writer').val();
+
+          $.ajax({
+            url: "/"+ id + "/edit",
+            type : 'post',
+            data : {title:title, text:text, writer:writer, id:id},
+            success: function(){
+              alert("수정하였습니다.");
+            }
+          });
+          f_obj.attr("action", "/" + id + "/edit");
+          f_obj.attr("method", "post");
+          f_obj.submit();
+        });
+      });
+  body
+    form(role='form')
+      input(type='hidden' id='id' value=result.id)
+      p
+        label TITLE
+      p
+        input(type='text' id='title' placeholder='title' value=result.title)
+      p
+        label TEXT
+      p
+        textarea(id='text' rows='3' placeholder='text')=result.text
+      p
+        label WRITER
+      p
+        input(type='text' id='writer' placeholder='writer' value=result.writer)
+      #btn_func
+      button#Submit 확인
