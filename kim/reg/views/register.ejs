@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Register</h1>
+    <form action="/auth/register" method="post">
+      <div class="content">
+          <p>
+            <label for="name">email:</label><br/>
+            <input type="email" name="email" placeholder="example@email.com">
+          </p>
+      </div>
+      <p>
+        <label for="name">username:</label><br/>
+        <input type="text" name="username" placeholder="username">
+      </p>
+      <p>
+        <label for="password">password:</label><br/>
+        <input type="password" name="password" placeholder="password">
+      </p>
+      <p>
+        <label for="displayName">displayName:</label><br/>
+        <input type="text" name="displayName" placeholder="displayName">
+      </p>
+
+      <p>
+        <input type="submit">
+      </p>
+    </form>
+
+
+
+  <!-- <% if(typeof msg !== 'undefined'){ %>
+  <%  if(!!err){ %>
+      <div class="msgbox err">
+        <%=msg%>
+      </div>
+  <%  }else{ %>
+      <div class="msgbox success">
+        <%=msg%>
+      </div>
+  <%  } %>
+
+  <% } %> -->
+
+
+  </body>
+</html>

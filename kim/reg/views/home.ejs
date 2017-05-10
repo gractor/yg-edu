@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  </head>
+  <script type="text/javascript">
+    function openLogin(){
+      var url = "/auth/login";
+      var status = "toolbar=no,location=no,status=no,directories=no,scrollbars=no,resizable=no,menubar=no,width=600, height=400, top=0,left=20";
+      var title = "로그인";
+      window.open(url, title, status);
+    }
+  </script>
+  <body>
+    <button type="button" name="button" onclick="javascript:openLogin();">로그인</button>
+  </body>
+</html>
