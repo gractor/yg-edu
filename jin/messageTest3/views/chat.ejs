@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>chat</title>
+  <link href="/static/stylesheets/semantic.min.css" rel="stylesheet" >
+  <style>
+		* {
+			padding:0;
+			margin:0;
+			box-sizing:border-box;
+		}
+
+		html {
+			width:100%;
+			height:100%;
+		}
+
+    p {
+      margin-left: 8px;
+      font-size : 10px;
+    }
+
+		body {
+			width:100%;
+			height:100%;
+			color: #000;
+			background: #ededed;
+		}
+
+		.container {
+			width:100%;
+			height:100%;
+			display:flex;
+			flex-flow:column wrap;
+			align-items:center;
+			justify-content:center;
+		}
+
+		#cardbox {
+			width:94%;
+			height:94%;
+			padding-left:0.4em;
+			padding-right:0.4em;
+		}
+
+		#iconImage {
+			display:inline;
+		}
+
+		#titleText {
+			font-size:1.4em;
+			font-weight:bold;
+			color:#777;
+		}
+
+		#contentsText {
+			color:#999;
+		}
+
+		#result {
+			height:14em;
+			overflow:auto;
+		}
+
+
+		.discussion {
+		  	list-style: none;
+		  	background: #ededed;
+		  	margin: 0;
+		  	padding: 0 0 50px 0;
+		}
+
+		.discussion li {
+		  	padding: 0.5em;
+		  	overflow: hidden;
+		  	display: flex;
+		}
+
+		.discussion .avatar {
+		  	width: 40px;
+		  	position: relative;
+		}
+
+		.discussion .avatar img {
+		  	display: block;
+		  	width: 100%;
+		}
+
+		.other .avatar:after {
+		  	content: "";
+		  	position: absolute;
+		  	top: 0;
+		  	right: 0;
+		  	width: 0;
+		  	height: 0;
+		  	border: 5px solid white;
+		  	border-left-color: transparent;
+		  	border-bottom-color: transparent;
+		}
+
+		.self {
+		  	justify-content: flex-end;
+		  	align-items: flex-end;
+		}
+
+		.self .messages {
+		  	order: 1;
+		  	border-bottom-right-radius: 0;
+		}
+
+		.self .avatar {
+		  	order: 2;
+		}
+
+		.self .avatar:after {
+        margin-left: -13px;
+        margin-bottom : -0.5px;
+		  	content: "";
+		  	position: absolute;
+		  	bottom: 0;
+		  	left: 0;
+		  	width: 0;
+		  	height: 0;
+		  	border: 5px solid white;
+		  	border-right-color: transparent;
+		  	border-top-color: transparent;
+		  	box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.2);
+		}
+
+		.messages {
+        margin-right: 13px;
+		  	background: white;
+		  	padding: 10px;
+		  	border-radius: 2px;
+		  	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+		}
+
+		.messages p {
+		  	font-size: 0.8em;
+		  	margin: 0 0 0.2em 0;
+		}
+
+		.messages time {
+		  	font-size: 0.7em;
+		  	color: #ccc;
+		}
+
+
+
+	</style>
+</head>
+<body>
+  <div class="ui segment" id="result">
+    <ol class="discussion">
+    <%for(var i=0 ; i<rows.length; i++){
+      var item = rows[i];
+      var time = String(item.regdate);
+      var date = time.substr(4,17);
+      %>
+
+      <%if(item.send_id == sendName){%>
+      <li class="self">
+        <div class="avatar">
+          <img src="/static/images/author.png" /><p><%=sendName%></p>
+        </div>
+        <div class="messages">
+          <p><%=item.content%></p>
+          <time><%=date%></time>
+        </div>
+      </li>
+    <%}else{%>
+      <li class="other">
+        <div class="avatar">
+          <img src="/static/images/author.png" /><p><%=takeName%></p>
+        </div>
+        <div class="messages">
+          <p><%=item.content%></p>
+          <time><%=date%></time>
+        </div>
+      </li>
+    <%}%>
+    <%}%>
+    </ol>
+  </div>
+  <form id="chat">
+    <input id="name" class="name" type="text" readonly>
+    <input id="message" class="message" type="text">
+    <input id="takeName" class="takeName" value=<%= takeName %> type="hidden">
+    <input type="submit" class="chat" value="chat" />
+  </form>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="/static/javascripts/semantic.min.js"></script>
+    <script>
+    document.getElementById('result').scrollTop = document.getElementById('result').scrollHeight;
+      var socket = io();
+      $('#chat').on('submit', function(e) {
+        socket.emit('send message', $('#name').val(), $('#message').val(), $('#takeName').val());
+        $('#message').val("");
+        e.preventDefault();
+      });
+      socket.on('receive message', function(msg, name) {
+        addToDiscussion(name, msg);
+         document.getElementById('result').scrollTop = document.getElementById('result').scrollHeight;
+      });
+      socket.on('change name', function(name) {
+        $('#name').val(name);
+      });
+
+
+      function addToDiscussion(name, msg, date) {
+
+        var date = Date();
+        var time = date.substr(4,17);
+
+  			if (name == "<%= sendName %>") {
+  				var img = '/static/images/author.png';
+  			} else {
+          var img = '/static/images/author.png';
+        }
+
+        if (name == "<%= sendName %>") {
+          var writer = "self";
+        } else {
+          var writer = "other";
+        }
+
+  			var contents = "<li class='" + writer + "'>"
+  						 + "  <div class='avatar'>"
+  						 + "    <img src='" + img + "' /><p>" + name +"</p>"
+  		      			 + "  </div>"
+  		      			 + "  <div class='messages'>"
+  		        		 + "    <p>" + msg + "</p>"
+  		        		 + "    <time datetime='2016-02-10 18:30'>"+ time +"</time>"
+  		      			 + "  </div>"
+  		    			 + "</li>";
+  		    $(".discussion").append(contents);
+  		}
+    </script>
+</body>
+</html>

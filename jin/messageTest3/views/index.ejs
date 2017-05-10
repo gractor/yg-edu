@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <script language="javascript">
+          function openCard(frm){
+            var url = "chat/";
+            var title = "chat";
+            var status = "toolbar=no,location=no,status=no,directories=no,scrollbars=no,resizable=no,menubar=no,width=600, height=280, top=0,left=20";
+            window.open("",title,status);
+            frm.target = title;
+            frm.method = "post";
+            frm.action = url;
+            frm.submit();
+          }
+  </script>
+  <body>
+    <table>
+        <h1><%= displayName %></h1>
+          <form name="form">
+            <input name="takeName" value="feel" type="hidden">
+            <button type="submit" onClick="javascript:openCard(this.form);">feel에게 메세지 보내보장</button></a>
+          </form>
+          <form name="form">
+            <input name="takeName" value="good" type="hidden">
+            <button type="submit" onClick="javascript:openCard(this.form);">good에게 메세지 보내보장</button></a>
+          </form>
+          <form action="/login/logout" method="get">
+            <button type="submit">로그아웃</button>
+          </form>
+    </table>
+  </body>
+</html>
